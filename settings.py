@@ -3,9 +3,10 @@ import os
 # Running on local machine. Let's just use the local mongod instance.
 MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
-MONGO_USERNAME = 'user'
-MONGO_PASSWORD = 'user'
-MONGO_DBNAME = 'apitest'
+MONGO_USERNAME = 'majinhu-admin'
+MONGO_PASSWORD = 'majinhu2014'
+MONGO_DBNAME = 'majinhu-api'
+HATEOAS = False
 
 # let's not forget the API entry point (not really needed anyway)
 #SERVER_NAME = '127.0.0.1:5000'
@@ -58,6 +59,7 @@ artists = {
             # 'lastname' is an API entry-point, so we need it to be unique.
             'unique': True,
         },
+        ''
         # 'role' is a list, and can only contain values from 'allowed'.
         'role': {
             'type': 'list',
@@ -80,7 +82,7 @@ artists = {
 artworks = {
     # if 'item_title' is not provided Eve will just strip the final
     # 's' from resource name, and use it as the item_title.
-    #'item_title': 'work',
+    #'item_title': 'artwork',
 
     # We choose to override global cache-control directives for this resource.
     'cache_control': 'max-age=10,must-revalidate',
@@ -89,10 +91,24 @@ artworks = {
     'schema': {
         'title': {
             'type': 'string',
-            'required': True,
+            'required': True
         },
         'description': {
-            'type': 'string',
+            'type': 'string'
+        },
+        'images': {
+            'type': 'dict',
+            'schema': {
+                'image_versions': {
+                    'type': 'list',
+                    'allowed': ["small", "medium", "large", "original", "square"]
+                },
+                'image_url': {
+                    'type': 'string',
+                    'required': True
+                }
+            },
+            'required': True
         },
         'owner': {
             'type': 'objectid',
@@ -105,6 +121,28 @@ artworks = {
                 'resource': 'artists'
             }
         },
+        'width': {
+            'type': 'number',
+            'required': True
+        },
+        'height': {
+            'type': 'number',
+            'required': True
+        },
+        'category': {
+            'type': 'list',
+            'allowed': ["plum", "orchid", "bamboo", "mum", "wisteria", "peony", "grape", "lotus"]
+        },
+        'price': {
+            'type': 'number'
+        },
+        'date': {
+            'type': 'datetime',
+            'required': True
+        },
+        'tags': {
+            'type': 'list'
+        }
     }
 }
 
@@ -112,5 +150,5 @@ artworks = {
 # be accessible to the API consumer.
 DOMAIN = {
     'artists': artists,
-    'artworks': artworks,
+    'artworks': artworks
 }
