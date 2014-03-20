@@ -9,9 +9,11 @@
   :license:
 """
 
+from auth import BCryptAuth
+
 definition = {
   #'allowed_roles': ['admin'],
-  #'authentication': bcrypt_auth,
+  'authentication': BCryptAuth(),
 
   # the standard account entry point is defined as
   # '/users/<ObjectId>'. We define  an additional read-only entry
