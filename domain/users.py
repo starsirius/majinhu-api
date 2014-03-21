@@ -41,8 +41,8 @@ definition = {
       'minlength': 8
     },
     'role': {
-      'type': 'string',
+      'type': 'list',
       'allowed': ["user", "admin"]
-    }
+    },
   }
 }
