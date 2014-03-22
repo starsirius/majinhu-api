@@ -1,4 +1,4 @@
-import os, random, string
+import os, random, string, json
 from eve import Eve
 from auth import AppTokenAuth
 
@@ -11,10 +11,24 @@ def add_token(documents):
     document["token"] = (''.join(random.choice(string.ascii_uppercase)
       for x in range(10)))
 
+def process_client_app_token(request, payload):
+  client_id = request.args.get('client_id')
+  client_secret = request.args.get('client_secret')
+
+  lookup = { 'client_id': client_id, 'client_secret': client_secret }
+  clients = app.data.driver.db['client_apps']
+  client = clients.find_one(lookup)
+
+  payload.set_data('{}')
+  if client:
+    data = { u'token': client['token'] }
+    payload.set_data(json.dumps(data))
+
 if __name__ == '__main__':
   port = 5000
   host = '127.0.0.1'
 
   # create a token for each app on insertion
   #app.on_insert_apps += add_token
+  app.on_post_GET_client_apps += process_client_app_token
   app.run(host=host, port=port)

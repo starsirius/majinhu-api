@@ -16,5 +16,3 @@ definition = {
     'datasource': { 'source': 'artworks' },
     'schema': artworks._schema
 }
-
-

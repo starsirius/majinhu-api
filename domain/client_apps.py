@@ -9,10 +9,15 @@
   :license:
 """
 
-from auth import BasicAuth
-
+# This resource is used as an item, it must be passed with client_id and
+# client_secret in request arguments and will return the token, see
+# `process_client_app_token()` function for details.
 definition = {
-  'authentication': BasicAuth(),
+  'url': 'xapp_token',
+  'datasource': { 'source': 'client_apps' },
+
+  'public_methods': ['GET'],
+  'public_item_methods': [],
 
   # We also disable endpoint caching as we don't want client apps to
   # cache app data.
@@ -23,12 +28,12 @@ definition = {
     'projection': {'token': 1}
   },
   'schema': {
-    'id': {
+    'client_id': {
       'type': 'string',
       'minlength': 8,
       'required': True
     },
-    'secret': {
+    'client_secret': {
       'type': 'string',
       'minlength': 8,
       'required': True
