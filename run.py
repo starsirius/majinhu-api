@@ -1,7 +1,8 @@
 import os, random, string
 from eve import Eve
+from auth import AppTokenAuth
 
-app = Eve()
+app = Eve(auth=AppTokenAuth)
 
 def add_token(documents):
   # Don't use this in production:

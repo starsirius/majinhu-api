@@ -4,7 +4,7 @@ DB_USER = majinhu-admin
 NOW := $(shell date +%b_%d_%Y_%H_%M_%S)
 DB_BACKUP_DEST = ./data/backup/db_backup_$(NOW) # destination folder
 
-DB_COLS = users artists artworks
+DB_COLS = users artists artworks apps
 DB_DATA_DIR = ./data
 
 # Start the api

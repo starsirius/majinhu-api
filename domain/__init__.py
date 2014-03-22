@@ -8,12 +8,10 @@
   :copyright: (c) 2014 by Chung-Yi Chi
   :license: 
 """
-import users
-import artists
-import artworks
-import artist_artworks
+import apps, users, artists, artworks, artist_artworks
 
 DOMAIN = {
+  'apps': apps.definition,
   'users': users.definition,
   'artists': artists.definition,
   'artworks': artworks.definition,
