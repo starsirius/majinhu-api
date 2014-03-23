@@ -1,4 +1,4 @@
-import os, random, string, json
+import os, random, string, json, datetime
 from eve import Eve
 from auth import AppTokenAuth
 
@@ -21,7 +21,11 @@ def process_client_app_token(request, payload):
 
   payload.set_data('{}')
   if client:
-    data = { u'token': client['token'] }
+    # Ideally, we have to expire tokens periodically and generate new ones.
+    # Here we just expire it in 10 years.
+    ten_years_from_now = datetime.datetime.now() + datetime.timedelta(days=10*365)
+    expires = ten_years_from_now.isoformat()
+    data = { u'token': client['token'], u'expires_in': expires }
     payload.set_data(json.dumps(data))
 
 if __name__ == '__main__':
