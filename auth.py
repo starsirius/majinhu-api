@@ -14,8 +14,8 @@ class BCryptAuth(BasicAuth):
     return user and bcrypt.hashpw(password, user['password']) == user['password']
 
 class AppTokenAuth(TokenAuth):
-  def check_auth(self, token,  allowed_roles, resource, method):
+  def check_auth(self, token, allowed_roles, resource, method):
     # use Eve's own db driver; no additional connections/resources are used
-    accounts = app.data.driver.db['client_apps']
+    client_apps = app.data.driver.db['client_apps']
     lookup = {'token': token}
-    return apps.find_one(lookup)
+    return client_apps.find_one(lookup)
