@@ -4,20 +4,25 @@ import domain
 DEBUG = True
 
 # Running on local machine. Let's just use the local mongod instance.
-MONGO_HOST = 'localhost'
-MONGO_PORT = 27017
-MONGO_USERNAME = 'majinhu-admin'
-MONGO_PASSWORD = 'majinhu2014'
-MONGO_DBNAME = 'majinhu-api'
+MONGO_HOST      = 'localhost'
+MONGO_PORT      = 27017
+MONGO_USERNAME  = 'majinhu-admin'
+MONGO_PASSWORD  = 'majinhu2014'
+MONGO_DBNAME    = 'majinhu-api'
+
+# let's not forget the API entry point (not really needed anyway)
+#SERVER_NAME = '127.0.0.1:5000'
+URL_PREFIX      = 'api'
+API_VERSION     = 'v1'
+
+# HATEOAS
 HATEOAS = False
 
 # CORS
 X_DOMAINS = '*'
 X_HEADERS = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
 
-# let's not forget the API entry point (not really needed anyway)
-#SERVER_NAME = '127.0.0.1:5000'
-
+# JSON and/or XML
 XML = False
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
