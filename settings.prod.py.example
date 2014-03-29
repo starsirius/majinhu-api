@@ -1,0 +1,9 @@
+DEBUG           =
+
+MONGO_HOST      =
+MONGO_PORT      =
+MONGO_USERNAME  =
+MONGO_PASSWORD  =
+MONGO_DBNAME    = 
+
+SERVER_NAME     =
