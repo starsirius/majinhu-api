@@ -2,7 +2,12 @@ import os, random, string, json, datetime
 from eve import Eve
 from auth import AppTokenAuth
 
-app = Eve(auth=AppTokenAuth)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+# The way how Eve looks for the abs settings file would not work when working
+# with gunicorn (will look for venv/bin/settings.py). So we provide the abs
+# explicitly here. Considering making a PR later.
+# https://github.com/nicolaiarocci/eve/blob/develop/eve/flaskapp.py#L171
+app = Eve(auth=AppTokenAuth, settings=current_dir+'/settings.py')
 
 def add_token(documents):
   # Don't use this in production:
