@@ -22,6 +22,9 @@ use majinhu-api
 db.addUser( { user: "majinhu-admin", pwd: "password", roles: [ "readWrite", "dbAdmin" ]} )
 ```
 ##### Initialize some data
+
+***Remember overwrite any sensitive data in the `data/init-` files before running the db-init script. For example, `client_id`, `client_secret`, and `token` in init_client_apps.json, and admin credentials in init_users.json***
+
 ```bash
 make db-init
 ```
@@ -44,6 +47,7 @@ bash bootstrap.sh
 ```
 
 ### Run the app
-```bash
-make s
-```
+
+ - Run the app in development mode: `make s`
+ - Run the app in production mode: `make sp`
+ - Run the app in production mode with gunicorn: `make gsp`
