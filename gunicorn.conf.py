@@ -14,7 +14,7 @@ def get_log_dir():
 pwd       = os.getcwd()
 log_dir   = get_log_dir()
 
-bind      = "127.0.0.1:5000"
+bind      = "majinhu.com:5000"
 workers   = numCPUs() * 2 + 1
 backlog   = 2048
 daemon    = True

@@ -33,11 +33,13 @@ def process_client_app_token(request, payload):
     data = { u'token': client['token'], u'expires_in': expires }
     payload.set_data(json.dumps(data))
 
+app.on_post_GET_client_apps += process_client_app_token
+
 if __name__ == '__main__':
   port = 5000
   host = '127.0.0.1'
 
   # create a token for each app on insertion
   #app.on_insert_apps += add_token
-  app.on_post_GET_client_apps += process_client_app_token
+  #app.on_post_GET_client_apps += process_client_app_token
   app.run(host=host, port=port)
