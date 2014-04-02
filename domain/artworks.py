@@ -58,7 +58,7 @@ _schema = {
   },
   'category': {
     'type': 'list',
-    'allowed': ["plum", "orchid", "bamboo", "mum", "wisteria", "peony", "grape", "lotus"]
+    'allowed': ["plum", "orchid", "bamboo", "mum", "wisteria", "peony", "grape", "lotus", "magnolia"]
   },
   'price': {
     'type': 'number'
